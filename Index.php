@@ -30,22 +30,19 @@
     <?php
 session_start();
 
-// Verifica se o histórico já existe na sessão
+
 if (!isset($_SESSION['historico'])) {
     $_SESSION['historico'] = [];
 }
 
-// Função para adicionar uma entrada ao histórico
 function adicionarHistorico($n1, $n2, $operacao, $resultado) {
     $_SESSION['historico'][] = array('n1' => $n1, 'n2' => $n2, 'operacao' => $operacao, 'resultado' => $resultado);
 }
 
-// Função para adicionar um valor à memória
 function adicionarMemoria($n1, $n2, $operacao) {
     $_SESSION['memoria'] = array('n1' => $n1, 'n2' => $n2, 'operacao' => $operacao);
 }
 
-// Função para trazer o valor da memória para o visor
 function exibirMemoria() {
     if (isset($_SESSION['memoria'])) {
         $memoria = $_SESSION['memoria'];
@@ -59,7 +56,6 @@ function exibirMemoria() {
     }
 }
 
-// Verifica se o botão de memória foi pressionado
 if (isset($_POST['memoria'])) {
     $n1 = isset($_POST['n1']) ? $_POST['n1'] : '';
     $n2 = isset($_POST['n2']) ? $_POST['n2'] : '';
@@ -67,14 +63,12 @@ if (isset($_POST['memoria'])) {
     adicionarMemoria($n1, $n2, $operacao);
 }
 
-// Verifica se os dados do formulário foram enviados
 if (isset($_POST['n1']) && isset($_POST['n2']) && isset($_POST['operacao'])) {
-    // Obtém os valores dos campos do formulário
+ 
     $n1 = $_POST['n1'];
     $n2 = $_POST['n2'];
     $opcao = $_POST['operacao'];
-
-    // Funções para as operações matemáticas
+    
     if ($n1 !== '' && $n2 !== '') {
         function soma($n1, $n2) {
             return $n1 + $n2;
@@ -108,7 +102,7 @@ if (isset($_POST['n1']) && isset($_POST['n2']) && isset($_POST['operacao'])) {
             }
         }
 
-        // Executa a operação selecionada
+     
         switch ($opcao) {
             case 1:
                 $resultado = soma($n1, $n2);
@@ -132,10 +126,8 @@ if (isset($_POST['n1']) && isset($_POST['n2']) && isset($_POST['operacao'])) {
                 $resultado = "Operação inválida";
         }
 
-        // Adiciona a operação ao histórico
         adicionarHistorico($n1, $n2, $opcao, $resultado);
 
-        // Exibe o resultado
         echo "Resultado: " . $resultado;
     } else {
         echo "Insira valores para Número 1 e Número 2.";
@@ -145,7 +137,6 @@ if (isset($_POST['n1']) && isset($_POST['n2']) && isset($_POST['operacao'])) {
     echo "";
 }
 
-// Exibe o histórico
 echo "<h2>Histórico de Contas:</h2>";
 echo "<ul>";
 foreach ($_SESSION['historico'] as $conta) {
@@ -153,7 +144,6 @@ foreach ($_SESSION['historico'] as $conta) {
 }
 echo "</ul>";
 
-// Função para obter o texto da operação
 function operacaoTexto($opcao) {
     switch ($opcao) {
         case 1:
