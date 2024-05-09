@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <title>Calculadora</title>
 </head>
 <body>
@@ -30,7 +31,6 @@
     <?php
 session_start();
 
-
 if (!isset($_SESSION['historico'])) {
     $_SESSION['historico'] = [];
 }
@@ -42,6 +42,7 @@ function adicionarHistorico($n1, $n2, $operacao, $resultado) {
 function adicionarMemoria($n1, $n2, $operacao) {
     $_SESSION['memoria'] = array('n1' => $n1, 'n2' => $n2, 'operacao' => $operacao);
 }
+
 
 function exibirMemoria() {
     if (isset($_SESSION['memoria'])) {
@@ -56,6 +57,7 @@ function exibirMemoria() {
     }
 }
 
+
 if (isset($_POST['memoria'])) {
     $n1 = isset($_POST['n1']) ? $_POST['n1'] : '';
     $n2 = isset($_POST['n2']) ? $_POST['n2'] : '';
@@ -64,11 +66,11 @@ if (isset($_POST['memoria'])) {
 }
 
 if (isset($_POST['n1']) && isset($_POST['n2']) && isset($_POST['operacao'])) {
- 
     $n1 = $_POST['n1'];
     $n2 = $_POST['n2'];
     $opcao = $_POST['operacao'];
-    
+
+
     if ($n1 !== '' && $n2 !== '') {
         function soma($n1, $n2) {
             return $n1 + $n2;
@@ -102,7 +104,7 @@ if (isset($_POST['n1']) && isset($_POST['n2']) && isset($_POST['operacao'])) {
             }
         }
 
-     
+
         switch ($opcao) {
             case 1:
                 $resultado = soma($n1, $n2);
@@ -126,16 +128,19 @@ if (isset($_POST['n1']) && isset($_POST['n2']) && isset($_POST['operacao'])) {
                 $resultado = "Operação inválida";
         }
 
+
         adicionarHistorico($n1, $n2, $opcao, $resultado);
 
-        echo "Resultado: " . $resultado;
+
+        echo "<h2>Resultado:  {$resultado} </h2>";
     } else {
-        echo "Insira valores para Número 1 e Número 2.";
+        echo "<p>Insira valores para Número 1 e Número 2.</p>";
     }
 } else {
-    // Se os dados do formulário não foram enviados, exibe uma mensagem de erro
+
     echo "";
 }
+
 
 echo "<h2>Histórico de Contas:</h2>";
 echo "<ul>";
@@ -143,6 +148,7 @@ foreach ($_SESSION['historico'] as $conta) {
     echo "<li>" . $conta['n1'] . " " . operacaoTexto($conta['operacao']) . " " . $conta['n2'] . " = " . $conta['resultado'] . "</li>";
 }
 echo "</ul>";
+
 
 function operacaoTexto($opcao) {
     switch ($opcao) {
@@ -167,11 +173,12 @@ if (isset($_POST['limpar_historico'])) {
     $_SESSION['historico'] = [];
 }
 
-echo "<li>Memória: ";
+echo "<li>Memória:  ";
         exibirMemoria();
-        echo "</li>";
+        echo " </li>";
 
 ?>
 </body>
 </html>
+
 
