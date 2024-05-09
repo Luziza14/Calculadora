@@ -1,1 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 20px;
+    background: rgb(42,38,38);
+}  
 
+
+
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label{
+    color:white;
+ }
+
+ h2{
+    color: white;
+ }
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+.textoBraco{
+    color: white;
+}
+
+input[type="number"],
+select {
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    color: white;
+    border-top: 6px double rgba(22,5,3,0.17);
+    border-bottom: 10px double rgba(22,5,3,0.17);
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background: rgb(42,38,38);
+    background: linear-gradient(61deg, rgba(42,38,38,1) 3%, rgba(9,121,86,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button[name="limpar_historico"],
+button[name="memoria"] {
+    background-color: #f44336;
+}
+
+button[name="limpar_historico"]:hover,
+button[name="memoria"]:hover {
+    background-color: #d32f2f;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    color: #ffffff;
+
+}
+
+li {
+    color: white;
+    margin-bottom: 5px;
+    
+}
+
+p {
+    font-style: italic;
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
